@@ -20,7 +20,7 @@
 
     <!-- mongo configuration -->
     <mongo:mongo host="localhost" port="27017" />
-    <mongo:db-factory dbname="yourdb" />
+    <mongo:db-factory dbname="deliverydb" />
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />

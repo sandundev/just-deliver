@@ -18,6 +18,10 @@ public class LocalBusiness {
 	
 	String firstContact;
 	
+	String telephone;
+	
+	String emailAddress;
+	
 	String registrationDate;
 
 	public String getId() {
@@ -66,6 +70,22 @@ public class LocalBusiness {
 
 	public void setRegistrationDate(String registrationDate) {
 		this.registrationDate = registrationDate;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 	
 }

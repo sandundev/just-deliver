@@ -15,6 +15,8 @@ public class DeliveryPerson {
 	Integer age;
 	
 	String vehicleType;
+	
+	CurrentLocation currentLocation;
 
 	public String getId() {
 		return id;
