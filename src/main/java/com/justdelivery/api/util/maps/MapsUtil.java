@@ -2,7 +2,7 @@ package com.justdelivery.api.util.maps;
 
 public class MapsUtil {
 
-	public static final double R = 6372.8; // In kilometers
+	private static final double R = 6372.8; // In kilometers
 
 	public static double getCircleDistance(double lat1, double lon1, double lat2, double lon2) {
 		double dLat = Math.toRadians(lat2 - lat1);

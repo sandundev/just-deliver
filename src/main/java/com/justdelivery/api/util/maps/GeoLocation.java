@@ -21,6 +21,8 @@ public class GeoLocation {
 
 	private double degLat;  // latitude in degrees
 	private double degLon;  // longitude in degrees
+	
+	private static final double R = 6372.8; // In kilometers
 
 	private static final double MIN_LAT = Math.toRadians(-90d);  // -PI/2
 	private static final double MAX_LAT = Math.toRadians(90d);   //  PI/2
@@ -161,13 +163,11 @@ public class GeoLocation {
 	 * array element.</li>
 	 * </ul>
 	 */
-	public GeoLocation[] boundingCoordinates(double distance, double radius) {
-
-		if (radius < 0d || distance < 0d)
-			throw new IllegalArgumentException();
-
+	public GeoLocation[] boundingCoordinates(double distance){
+	
+		
 		// angular distance in radians on a great circle
-		double radDist = distance / radius;
+		double radDist = distance / R;
 
 		double minLat = radLat - radDist;
 		double maxLat = radLat + radDist;
@@ -195,9 +195,9 @@ public class GeoLocation {
 		
 		GeoLocation geo = new GeoLocation(51.029855,-0.123889);
 		
-		GeoLocation[] x = geo.boundingCoordinates(126.98655918170651, 6371.01);
+		GeoLocation[] x = geo.boundingCoordinates(126.98655918170651);
 		 
-		double y = MapsUtil.getCircleDistance(51.029855,-0.123889,52.17155, -0.123889);
+		double y = MapsUtil.getCircleDistance(51.029855,-0.123889,52.17155, 1.6916343367281883);
 		
 		System.out.println(y);
  

@@ -23,7 +23,7 @@ public class GoogleMapsServiceImpl implements GoogleMapsService {
 	public static void main(String[] args) {
 		DistanceMatrixResponse  distanceResponse = new GoogleMapsServiceImpl().getDistanceMatrixResponseFromGoogle("51.529855,-0.123889","57.178073, -2.173265");
 		System.out.println(distanceResponse.getOriginAddress());
-		distanceResponse.getRow().getElement();
+		System.out.println(distanceResponse.getRow().getElement().get(0).getDuration().getValue());
 	}
 	private String getBaseURI() {
 	 
