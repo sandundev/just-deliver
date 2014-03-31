@@ -1,24 +1,34 @@
 package com.justdelivery.api.endpoint;
 
+import java.util.Date;
+
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.http.HttpStatus;
 
+import com.justdelivery.api.model.core.LocalBusiness;
 import com.justdelivery.api.service.LocalBusinessService;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class LocalBusinessEndPointTest {
 
-	LocalBusinessEndPoint businessEndPoint;
+	private LocalBusinessEndPoint businessEndPoint;
 	
-	UriInfo uriInfo;
+	private UriInfo uriInfo;
 	
-	LocalBusinessService localBusinessService;
+	private LocalBusinessService localBusinessService;
 	
-	@BeforeClass
+	@Before
 	public void setup() {
 		
 		businessEndPoint= new LocalBusinessEndPoint();
@@ -32,7 +42,25 @@ public class LocalBusinessEndPointTest {
 	@Test
 	public void shouldCreateLocalBusinessProfile(){
 
-		//TODO:
+		LocalBusiness localBusiness = new LocalBusiness();
+		
+		localBusiness.setAddress("Address_"+1);
+		localBusiness.setBusinessName("Nandos Kingsbury");
+		localBusiness.setEmailAddress("sandun.lewke@gmail.com");
+		localBusiness.setFirstContact("first contact person");
+		localBusiness.setPostCode("nw2 1sd");
+		localBusiness.setRegistrationDate(new Date());
+		localBusiness.setTelephone("07914421999");
+		
+		when(localBusinessService.registerLocalBusiness(localBusiness)).thenReturn("test_ID");
+		when(uriInfo.getAbsolutePathBuilder()).thenReturn(UriBuilder.fromPath("http://localhost:8080/base_url/"));
+		
+		Response response = businessEndPoint.createLocalBusiness(localBusiness);
+		
+		assertThat(response.getLocation().toString(), is("http://localhost:8080/base_url/test_ID"));
+		assertThat(response.getStatus(), is(HttpStatus.CREATED.value()));
+ 
+	        
 	}
 
 }

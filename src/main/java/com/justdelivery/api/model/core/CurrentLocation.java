@@ -7,24 +7,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class CurrentLocation {
 
-	@Id
-	private String id;
-	
 	private String address;
 	
-	private String longitude;
+	private Double longitude;
 	
-	private String latitude;
+	private Double latitude;
 	
 	private String lastUpdatedTime;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getAddress() {
 		return address;
@@ -34,19 +23,19 @@ public class CurrentLocation {
 		this.address = address;
 	}
 
-	public String getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(String longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
-	public String getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(String latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
@@ -57,5 +46,7 @@ public class CurrentLocation {
 	public void setLastUpdatedTime(String lastUpdatedTime) {
 		this.lastUpdatedTime = lastUpdatedTime;
 	}
+
+	 
 	
 }

@@ -33,7 +33,7 @@ public class GeoLocation {
 	 * @param latitude the latitude, in degrees.
 	 * @param longitude the longitude, in degrees.
 	 */
-	private GeoLocation (double latitude, double longitude) {
+	public GeoLocation (double latitude, double longitude) {
 		
 		degLat = latitude;
 		degLon = longitude;
@@ -191,21 +191,27 @@ public class GeoLocation {
 		return new GeoLocation[]{fromRadians(minLat, minLon), fromRadians(maxLat, maxLon)};
 	}
 
-	public static void main(String[] args) {
-		
-		GeoLocation geo = new GeoLocation(51.029855,-0.123889);
-		
-		GeoLocation[] x = geo.boundingCoordinates(126.98655918170651);
-		 
-		double y = MapsUtil.getCircleDistance(51.029855,-0.123889,52.17155, 1.6916343367281883);
-		
-		System.out.println(y);
- 
-		for (GeoLocation geoLocation : x) {
+	 public static void main(String[] args) {
+         
+         GeoLocation geo = new GeoLocation(51.029855,-0.123889);
+         
+         double y = MapsUtil.getCircleDistance(geo.getLatitudeInDegrees(),geo.getLongitudeInDegrees(),52.17155, 1.6916343367281883);
+       
+         GeoLocation[] x = geo.boundingCoordinates(y);
+       
+      
+         System.out.println("Original Point :["+ geo.getLatitudeInDegrees()+","+geo.getLongitudeInDegrees()+"]");
+         System.out.println(y);
+        
+         for (GeoLocation geoLocation : x) {
 
-			 System.out.println(geoLocation.getLatitudeInDegrees());
-			
-			System.out.println(geoLocation.getLongitudeInDegrees());
-		}
-	}
+              System.out.println("Distance :"+MapsUtil.getCircleDistance(geo.getLatitudeInDegrees(),geo.getLongitudeInDegrees(),geoLocation.getLatitudeInDegrees(),geo.getLongitudeInDegrees())+" > ["+geoLocation.getLatitudeInDegrees()+","+geo.getLongitudeInDegrees()+"]");
+              System.out.println("Distance :"+MapsUtil.getCircleDistance(geo.getLatitudeInDegrees(),geo.getLongitudeInDegrees(),geo.getLatitudeInDegrees(),geoLocation.getLongitudeInDegrees())+" > ["+geo.getLatitudeInDegrees()+","+geoLocation.getLongitudeInDegrees()+"]");
+              
+          //    System.out.println(geo.getLatitudeInDegrees()+","+geoLocation.getLongitudeInDegrees());
+               
+                 // System.out.println(geoLocation.getLatitudeInDegrees());
+                 //    System.out.println(geoLocation.getLongitudeInDegrees());
+         }
+     }
 }

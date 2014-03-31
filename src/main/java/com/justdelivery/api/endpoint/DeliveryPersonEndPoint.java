@@ -28,9 +28,9 @@ public class DeliveryPersonEndPoint {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response createDeliveryPerson(DeliveryPerson deliveryPerson){
     	
-		String id = deliveryPersonService.registerDeliveryPerson(deliveryPerson);
+		DeliveryPerson newDeliveryPerson = deliveryPersonService.createDeliveryPerson(deliveryPerson);
 
-		return Response.created(uriInfo.getAbsolutePathBuilder().path("{id}").build(id)).build();
+		return Response.created(uriInfo.getAbsolutePathBuilder().path("{id}").build(newDeliveryPerson.getId())).build();
 		 
 	}
 	@GET
@@ -50,7 +50,6 @@ public class DeliveryPersonEndPoint {
 	
     @Context
 	public void setUriInfo(UriInfo uriInfo) {
-	
 		this.uriInfo = uriInfo;
 		
 	}

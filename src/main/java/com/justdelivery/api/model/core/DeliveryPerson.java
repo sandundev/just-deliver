@@ -1,6 +1,7 @@
 package com.justdelivery.api.model.core;
 
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -8,15 +9,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class DeliveryPerson {
 
 	@Id
-	String id;
+	private String id;
 	
-	String name;
+	private String name;
 	
-	Integer age;
+	private Integer age;
 	
-	String vehicleType;
-	
-	CurrentLocation currentLocation;
+	private String vehicleType;
+
+	@ManyToOne
+	private CurrentLocation currentLocation;
 
 	public String getId() {
 		return id;
@@ -48,5 +50,13 @@ public class DeliveryPerson {
 
 	public void setVehicleType(String vehicleType) {
 		this.vehicleType = vehicleType;
+	}
+
+	public CurrentLocation getCurrentLocation() {
+		return currentLocation;
+	}
+
+	public void setCurrentLocation(CurrentLocation currentLocation) {
+		this.currentLocation = currentLocation;
 	}
 }

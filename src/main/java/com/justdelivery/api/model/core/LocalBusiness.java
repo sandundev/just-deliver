@@ -1,5 +1,7 @@
 package com.justdelivery.api.model.core;
 
+import java.util.Date;
+
 import javax.persistence.Id;
 
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -22,7 +24,7 @@ public class LocalBusiness {
 	
 	String emailAddress;
 	
-	String registrationDate;
+	Date registrationDate;
 
 	public String getId() {
 		return id;
@@ -64,14 +66,6 @@ public class LocalBusiness {
 		this.firstContact = firstContact;
 	}
 
-	public String getRegistrationDate() {
-		return registrationDate;
-	}
-
-	public void setRegistrationDate(String registrationDate) {
-		this.registrationDate = registrationDate;
-	}
-
 	public String getTelephone() {
 		return telephone;
 	}
@@ -86,6 +80,14 @@ public class LocalBusiness {
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
+	}
+
+	public Date getRegistrationDate() {
+		return registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 	
 }
