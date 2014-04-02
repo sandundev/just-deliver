@@ -1,11 +1,9 @@
 package com.justdelivery.api.endpoint;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -19,6 +17,7 @@ import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import com.justdelivery.api.exception.DeliveryPersonNotFound;
 import com.justdelivery.api.model.core.CurrentLocation;
 import com.justdelivery.api.model.core.DeliveryPerson;
@@ -37,6 +36,7 @@ public class DeliveryPersonEndPoint {
 	private UriInfo uriInfo;
 
 	@PUT
+    @Path("/create/")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response createDeliveryPerson(DeliveryPerson deliveryPerson){
     	
@@ -47,7 +47,7 @@ public class DeliveryPersonEndPoint {
 	}
 	
     @POST
-    @Path("/{id}")
+    @Path("/location/update/{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response updateCurrentLocationForDeliveryPerson(@PathParam("id") String personId,  CurrentLocation currentLocation) throws DeliveryPersonNotFound{
     	
@@ -58,9 +58,9 @@ public class DeliveryPersonEndPoint {
 	}
 	
     @POST
-    @Path("/{radius}")
+    @Path("/list/{radius}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public Response getDeliveryPersonListForLocationAndRadius(CurrentLocation location,@PathParam("radius")  Double radius, Date lastUpdatedTime) throws DeliveryPersonNotFound{
+	public Response getDeliveryPersonListForLocationAndRadius(@PathParam("radius")  Double radius, CurrentLocation location) throws DeliveryPersonNotFound{
     	
 		List<DeliveryPerson> matchingPersonList = deliveryPersonService.getDeliveryPersonListForLocationAndRadius(location, radius, new Date());
 		
