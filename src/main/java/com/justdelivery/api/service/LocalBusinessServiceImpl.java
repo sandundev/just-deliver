@@ -14,8 +14,8 @@ public class LocalBusinessServiceImpl implements LocalBusinessService{
 	private LocalBusinessRepository localBusinessDao;
 
 	@Override
-	public String registerLocalBusiness(LocalBusiness localBusiness) {
-		return localBusinessDao.save(localBusiness).getId();
+	public LocalBusiness createLocalBusiness(LocalBusiness localBusiness) {
+		return localBusinessDao.save(localBusiness);
 		 
 	}
 

@@ -38,9 +38,10 @@ public class LocalBusinessEndPoint {
 	@PUT
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public Response createLocalBusiness(LocalBusiness localBusiness){
-		//{"businessName" : "Lahore Spice2", "address" : "10 Highfield Close, NW9 0PB", "postCode" : "NW9 0PB" }
-		 String id = localBusinessService.registerLocalBusiness(localBusiness);
-		 return Response.created(uriInfo.getAbsolutePathBuilder().path("{id}").build(id)).build();
+		
+			LocalBusiness business = localBusinessService.createLocalBusiness(localBusiness);
+			
+			return Response.created(uriInfo.getAbsolutePathBuilder().path("{id}").build(business.getId())).build();
 	}
 
 	@Autowired

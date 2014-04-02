@@ -26,7 +26,7 @@ public class LocalBusinessServiceTest {
 	@Test
 	public void shouldSaveLocalBusiness() {
 		LocalBusiness localBusiness = getTestLocalBusiness();
-		localBusinessService.registerLocalBusiness(localBusiness);
+		localBusinessService.createLocalBusiness(localBusiness);
 	}
 
 	private LocalBusiness getTestLocalBusiness() {

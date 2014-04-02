@@ -52,7 +52,7 @@ public class LocalBusinessEndPointTest {
 		localBusiness.setRegistrationDate(new Date());
 		localBusiness.setTelephone("07914421999");
 		
-		when(localBusinessService.registerLocalBusiness(localBusiness)).thenReturn("test_ID");
+		when(localBusinessService.createLocalBusiness(localBusiness)).thenReturn(localBusiness);
 		when(uriInfo.getAbsolutePathBuilder()).thenReturn(UriBuilder.fromPath("http://localhost:8080/base_url/"));
 		
 		Response response = businessEndPoint.createLocalBusiness(localBusiness);

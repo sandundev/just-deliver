@@ -5,7 +5,7 @@ import com.justdelivery.api.model.core.LocalBusiness;
 
 public interface LocalBusinessService {
 	
-	public String registerLocalBusiness(LocalBusiness localBusiness);
+	public LocalBusiness createLocalBusiness(LocalBusiness localBusiness);
 	
 	public DeliveryStatus getDeliveryStatusForOrderId(String orderId);
 	
