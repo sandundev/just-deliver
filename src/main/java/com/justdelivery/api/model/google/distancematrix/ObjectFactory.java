@@ -6,7 +6,7 @@
 //
 
 
-package com.justdelivery.api.model.google;
+package com.justdelivery.api.model.google.distancematrix;
 
 import javax.xml.bind.annotation.XmlRegistry;
 

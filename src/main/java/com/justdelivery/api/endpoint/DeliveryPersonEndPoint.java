@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -45,6 +46,15 @@ public class DeliveryPersonEndPoint {
 		return Response.created(uriInfo.getAbsolutePathBuilder().path("{id}").build(newDeliveryPerson.getId())).build();
 		 
 	}
+	@GET
+    @Path("/find/{id}")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	public Response getCurrentLocationForPerson(@PathParam("id") String personId){
+ 
+		CurrentLocation location = deliveryPersonService.findDeliveryPersonById(personId).getCurrentLocation();
+		return Response.ok(location).build();
+		
+	}
 	
     @POST
     @Path("/location/update/{id}")
@@ -60,6 +70,7 @@ public class DeliveryPersonEndPoint {
     @POST
     @Path("/list/{radius}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Produces({MediaType.APPLICATION_JSON})
 	public Response getDeliveryPersonListForLocationAndRadius(@PathParam("radius")  Double radius, CurrentLocation location) throws DeliveryPersonNotFound{
     	
 		List<DeliveryPerson> matchingPersonList = deliveryPersonService.getDeliveryPersonListForLocationAndRadius(location, radius, new Date());
