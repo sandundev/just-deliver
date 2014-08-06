@@ -17,10 +17,8 @@
 
     <context:component-scan base-package="com.justdelivery.api"/>
 
-
-    <!-- mongo configuration -->
-    <mongo:mongo host="localhost" port="27017" />
-    <mongo:db-factory dbname="deliverydb" />
+ 
+    <mongo:db-factory dbname="sand_db" username="sandundev" host="ds055709.mongolab.com" port="55709" password="London2013"/>
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
@@ -28,64 +26,6 @@
 
     <mongo:repositories base-package="com.justdelivery.api" mongo-template-ref="mongoTemplate"/>
 
-    <!-- Factory bean that creates the Mongo instance -->
-    <bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-        <property name="host" value="localhost"/>
-    </bean>
-
-    <!-- end mongo configuration -->
-
-    <!-- database connection configuration -->
-
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost/jerseyexample"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
-        <property name="initialSize" value="3" />
-        <property name="maxActive" value="10" />
-    </bean>
-
-    <!-- end of database connection configuration -->
-
-    <!-- ORM framework configuration -->
-
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-
-    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-
-
-        <property name="packagesToScan" value="com.justdelivery.api"></property>
-
-        <property name="dataSource" ref="dataSource"/>
-
-        <property name="jpaVendorAdapter">
-            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-                <property name="showSql" value="false"/>
-                <property name="generateDdl" value="false"/>
-            </bean>
-        </property>
-
-        <property name="jpaProperties">
-            <props>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
-            </props>
-        </property>
-    </bean>
-
-
-    <!-- transaction management definition -->
-
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="entityManagerFactory" />
-    </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager" />
-
-
-    <jpa:repositories base-package="com.justdelivery.api.jpa.repository" query-lookup-strategy="use-declared-query"/>
 
 </beans>
