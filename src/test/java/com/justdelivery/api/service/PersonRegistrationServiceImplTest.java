@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import com.justdelivery.api.model.Address;
 import com.justdelivery.api.model.Driver;
 import com.justdelivery.api.model.GPSDevice;
@@ -79,20 +80,18 @@ public class PersonRegistrationServiceImplTest {
 		Set<GPSDevice> gpsDevices = new HashSet<GPSDevice>();
 		
 		GPSDevice gpsDevice = new GPSDevice();
-		gpsDevice.setImeiNumber("GYHJIOHUHUUIH32456768FGSFDGH443436ASHGGXH");
+		gpsDevice.setImeiNumber("GYHJIOHUHUUIHH443436ASHGGXH"+registrationDate.getTime());
 		
 		Location currentLocation = new Location();
 		currentLocation.setLastUpdated(registrationDate);
 		double[] position = {-73.99171, 40.738868};
 		currentLocation.setPosition(position);
-		
-		gpsDevice.setCurrentLocation(currentLocation);
 	 
 		operations.insert(gpsDevice);
 		
 		gpsDevices.add(gpsDevice);
 		person.setGpsDevices(gpsDevices);
-		
+	 
 		personRegistrationService.register(person);
 	}
 }

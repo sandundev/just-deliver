@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @CompoundIndexes({
@@ -21,12 +22,16 @@ public class Parcel {
 	
 	private String barCode;
 	
-	private Location senderLocation;
-	
-	private Location receiverLocation;
+	@DBRef
+	private ParcelSender parcelSender;
+
+	@DBRef
+	private ParcelReceiver parcelReceiver;
+
+	private Boolean deliveryStatus;
 
 	@Indexed
-	private Location lastLocation;
+	private Location currentLocation;
 
 	public String getReferenceNumber() {
 		return referenceNumber;
@@ -34,30 +39,6 @@ public class Parcel {
 
 	public void setReferenceNumber(String referenceNumber) {
 		this.referenceNumber = referenceNumber;
-	}
-
-	public Location getSenderLocation() {
-		return senderLocation;
-	}
-
-	public void setSenderLocation(Location senderLocation) {
-		this.senderLocation = senderLocation;
-	}
-
-	public Location getReceiverLocation() {
-		return receiverLocation;
-	}
-
-	public void setReceiverLocation(Location receiverLocation) {
-		this.receiverLocation = receiverLocation;
-	}
-
-	public Location getLastLocation() {
-		return lastLocation;
-	}
-
-	public void setLastLocation(Location lastLocation) {
-		this.lastLocation = lastLocation;
 	}
 
 	public String getId() {
@@ -70,5 +51,37 @@ public class Parcel {
 
 	public void setBarCode(String barCode) {
 	    this.barCode = barCode;
+	}
+
+	public ParcelSender getParcelSender() {
+	    return parcelSender;
+	}
+
+	public void setParcelSender(ParcelSender parcelSender) {
+	    this.parcelSender = parcelSender;
+	}
+
+	public ParcelReceiver getParcelReceiver() {
+	    return parcelReceiver;
+	}
+
+	public void setParcelReceiver(ParcelReceiver parcelReceiver) {
+	    this.parcelReceiver = parcelReceiver;
+	}
+
+	public Boolean getDeliveryStatus() {
+	    return deliveryStatus;
+	}
+
+	public void setDeliveryStatus(Boolean deliveryStatus) {
+	    this.deliveryStatus = deliveryStatus;
+	}
+
+	public Location getCurrentLocation() {
+	    return currentLocation;
+	}
+
+	public void setCurrentLocation(Location currentLocation) {
+	    this.currentLocation = currentLocation;
 	}
 }

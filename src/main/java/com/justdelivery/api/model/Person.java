@@ -21,6 +21,7 @@ public class Person {
 	
 	private Date registeredDate = new Date();
 	
+	private Location currentLocation;
 	@DBRef
 	private Set<GPSDevice> gpsDevices;
 
@@ -82,6 +83,12 @@ public class Person {
 	@Override
 	public String toString() {
 		return String.format("%s %s", firstName, lastName);
+	}
+	public Location getCurrentLocation() {
+	    return currentLocation;
+	}
+	public void setCurrentLocation(Location currentLocation) {
+	    this.currentLocation = currentLocation;
 	}
 
 }

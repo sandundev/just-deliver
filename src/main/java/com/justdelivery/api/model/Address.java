@@ -11,8 +11,6 @@ public class Address {
 	
 	@Pattern(regexp = "(GIR 0AA)|((([A-Z-[QVX]][0-9][0-9]?)|(([A-Z-[QVX]][A-Z-[IJZ]][0-9][0-9]?)|(([A-Z-[QVX]][0-9][A-HJKSTUW])|([A-Z-[QVX]][A-Z-[IJZ]][0-9][ABEHMNPRVWXY])))) [0-9][A-Z-[CIKMOV]]{2})", message = "{Address.postCode.Pattern}")
 	private String postCode;
-	
-	private Location location;
 
 	public String getLine1() {
 		return line1;
@@ -36,14 +34,6 @@ public class Address {
 
 	public void setPostCode(String postCode) {
 		this.postCode = postCode;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(Location location) {
-		this.location = location;
 	}
 	
 }

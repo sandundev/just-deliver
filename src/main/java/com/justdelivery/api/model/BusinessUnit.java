@@ -1,8 +1,24 @@
 package com.justdelivery.api.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+public class BusinessUnit {
+    
+	private String businessName;
+	
+	private Address address;
 
-@Document
-public class BusinessUnit extends BusinessChain{
+	public String getBusinessName() {
+	    return businessName;
+	}
 
+	public void setBusinessName(String businessName) {
+	    this.businessName = businessName;
+	}
+
+	public Address getAddress() {
+	    return address;
+	}
+
+	public void setAddress(Address address) {
+	    this.address = address;
+	} 
 }

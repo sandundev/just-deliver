@@ -3,6 +3,7 @@ package com.justdelivery.api.model;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -11,23 +12,14 @@ public class GPSDevice {
 	@Id
 	private String id;
 
-	private Location currentLocation;
-
 	private String imeiNumber;
 	
 	private String appRegistrationId;
 
 	private Date lastUpdatedDate;
 	
+	@DBRef
 	private Person currentUser;
-
-	public Location getCurrentLocation() {
-		return currentLocation;
-	}
-
-	public void setCurrentLocation(Location currentLocation) {
-		this.currentLocation = currentLocation;
-	}
 
 	public String getImeiNumber() {
 		return imeiNumber;

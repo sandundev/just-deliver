@@ -1,16 +1,9 @@
 package com.justdelivery.api.model;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class ParcelReceiver {
-	
-	@Id
-	private String id;
+public class ParcelReceiver extends Person{
 
-	public String getId() {
-		return id;
-	}
 	
 }
