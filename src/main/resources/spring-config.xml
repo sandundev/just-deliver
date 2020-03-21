@@ -18,7 +18,7 @@
     <context:component-scan base-package="com.justdelivery.api"/>
 
  
-    <mongo:db-factory dbname="sand_db" username="sandundev" host="ds055709.mongolab.com" port="55709" password="London2013"/>
+    <mongo:db-factory dbname="aaaa" username="27017" host="ds055709.mongolab.com" port="covid19" password="dsdsa@2020"/>
 
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
